@@ -9,14 +9,45 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
+    createdBy() {
+      return `${this.title} by ${this.author}`
+    }
+
     static associate(models) {
       // define association here
     }
   };
   Book.init({
-    title: DataTypes.STRING,
-    author: DataTypes.STRING,
-    released_year: DataTypes.INTEGER
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: {
+          args: true,
+          msg: `title is required!`
+        }
+      }
+    },
+    author: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: {
+          args: true,
+          msg: `author's name is required!`
+        }
+      }
+    },
+    released_year: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      validate: {
+        isInt: {
+          args: true,
+          msg: `please insert valid year!`
+        }
+      }
+    }
   }, {
     sequelize,
     modelName: 'Book',

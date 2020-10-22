@@ -8,5 +8,25 @@
   </head>
 
   <body>
-
+    <form action="/checkout" method="post">
+      <table>
+        <tr>
+          <th>Title</th>
+          <th>Author</th>
+          <th>Released Year</th>
+        </tr>
+        <% data.forEach(el => { %>
+        <tr>
+          <td><%= el.title %></td>
+          <td><%= el.author %></td>
+          <td><%= el.released_year %></td>
+          <td><input type="date" name="date" id=""></td>
+          <td><input type="submit" value="add"></td>
+        </tr>
+        <% }) %>
+      </table>
+    </form>
+    <button><a href="/book">Rent</a></button>
   </body>
+
+</html>

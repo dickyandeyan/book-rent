@@ -38,10 +38,10 @@ class BookController {
   static editBookForm(req, res) {
     const id = +req.params.id
     Book.findAll({
-        where: {
-          id
-        }
-      })
+      where: {
+        id
+      }
+    })
       .then(data => {
         res.render(`editBook`, {
           data
@@ -60,10 +60,10 @@ class BookController {
       released_year: req.body.released_year
     }
     Book.update(dataUpdateBook, {
-        where: {
-          id
-        }
-      })
+      where: {
+        id
+      }
+    })
       .then(data => {
         res.redirect('/book')
       })
@@ -75,16 +75,45 @@ class BookController {
   static deleteBook(req, res) {
     const id = +req.params.id
     Book.destroy({
-        where: {
-          id
-        }
-      })
+      where: {
+        id
+      }
+    })
       .then(data => {
         res.redirect('/book')
       })
       .catch(err => {
         res.send(err)
       })
+  }
+
+  static checkoutForm(req, res) {
+    const books = {
+      title: req.body.title,
+      author: req.body.author,
+      released_year: req.body.released_year
+    }
+    console.log(req)
+    Book.findAll()
+      .then(data => {
+        res.render('checkout', { data })
+      })
+      .catch(err => {
+        res.send(err)
+      })
+
+  }
+
+  static checkout(req, res) {
+    const data = {
+      rent_date: req.body.date,
+      BookId: req.body.id
+    }
+    BookUser.create()
+  }
+
+  static rent(req, res) {
+
   }
 }
 

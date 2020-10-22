@@ -1,4 +1,6 @@
-const { createInvoice } = require("./createInvoice.js");
+const {
+  createInvoice
+} = require("./createInvoice.js");
 
 const invoice = {
   shipping: {
@@ -9,8 +11,7 @@ const invoice = {
     country: "US",
     postal_code: 94111
   },
-  items: [
-    {
+  items: [{
       item: "TC 100",
       description: "Toner Cartridge",
       quantity: 2,

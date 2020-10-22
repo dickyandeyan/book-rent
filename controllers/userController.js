@@ -2,6 +2,8 @@ const {
   User
 } = require('../models')
 
+const bcrypt = require('bcryptjs');
+
 class UserController {
   static registerForm(req, res) {
     res.render('./login/registerForm')
@@ -62,7 +64,7 @@ class UserController {
         }
       })
       .catch(err => {
-        res.send(err);
+        res.send(err.message);
       })
   }
 }

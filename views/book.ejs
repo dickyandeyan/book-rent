@@ -19,6 +19,7 @@
         <th>Title</th>
         <th>Author</th>
         <th>Released Year</th>
+        <th>Stock</th>
         <th>Action</th>
       </tr>
       <% data.forEach(el => { %>
@@ -26,6 +27,7 @@
         <td><%= el.title %></td>
         <td><%= el.author %></td>
         <td><%= el.released_year %></td>
+        <td><%= el.stock %></td>
         <td><a href="/book/edit/<%= el.id %>">Edit</a> | <a href="/book/delete/<%= el.id %>">Delete</a></td>
       </tr>
       <% }) %>

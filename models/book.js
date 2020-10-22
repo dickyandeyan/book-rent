@@ -48,6 +48,19 @@ module.exports = (sequelize, DataTypes) => {
           msg: `please insert valid year!`
         }
       }
+    },
+    stock: {
+      type: DataTypes.INTEGER
+    },
+    price: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        isInt: {
+          args: true,
+          msg: `Price is required!`
+        }
+      }
     }
   }, {
     sequelize,

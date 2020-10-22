@@ -3,6 +3,8 @@ const {
   BookUser
 } = require('../models')
 
+const helper = require('../helpers/helper')
+
 class BookController {
   static showBook(req, res) {
     Book.findAll()
@@ -24,7 +26,9 @@ class BookController {
     const dataAddBook = {
       title: req.body.title,
       author: req.body.author,
-      released_year: req.body.released_year
+      released_year: req.body.released_year,
+      stock: +req.body.stock,
+      price: +req.body.price
     }
     Book.create(dataAddBook)
       .then(data => {
@@ -57,7 +61,9 @@ class BookController {
     const dataUpdateBook = {
       title: req.body.title,
       author: req.body.author,
-      released_year: req.body.released_year
+      released_year: req.body.released_year,
+      stock: +req.body.stock,
+      price: +req.body.price
     }
     Book.update(dataUpdateBook, {
       where: {
@@ -76,7 +82,7 @@ class BookController {
     const id = +req.params.id
     Book.destroy({
       where: {
-        id
+        id, stock: 0
       }
     })
       .then(data => {
@@ -87,13 +93,7 @@ class BookController {
       })
   }
 
-  static checkoutForm(req, res) {
-    const books = {
-      title: req.body.title,
-      author: req.body.author,
-      released_year: req.body.released_year
-    }
-    console.log(req)
+  static checkout(req, res) {
     Book.findAll()
       .then(data => {
         res.render('checkout', { data })
@@ -101,19 +101,40 @@ class BookController {
       .catch(err => {
         res.send(err)
       })
-
   }
 
-  static checkout(req, res) {
-    const data = {
-      rent_date: req.body.date,
-      BookId: req.body.id
+  static cart(req, res) {
+    const dataCheckout = {
+      BookId: +req.params.id,
+      UserId: +req.session.userId
     }
-    BookUser.create()
+    BookUser.create(dataCheckout)
+      .then(data => {
+        return Book.decrement('stock', { where: { id: +req.params.id } })
+      })
+      .then(data => {
+        res.redirect('/book/checkout')
+      })
+      .catch(err => {
+        res.send(err.message)
+      })
   }
 
-  static rent(req, res) {
-
+  static buy(req, res) {
+    const id = +req.session.userId
+    BookUser.findAll({ where: { UserId: id } })
+      .then(data => {
+        for (let i = 0; i < data.length; i++) {
+          Book.findAll({ where: { id: data[i].BookId } })
+            .then(res => {
+              console.log(res[0].dataValues) // hasil
+            })
+        }
+        res.redirect('/book')
+      })
+      .catch(err => {
+        res.send(err)
+      })
   }
 }
 

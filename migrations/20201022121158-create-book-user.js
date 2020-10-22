@@ -8,9 +8,6 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      rent_date: {
-        type: Sequelize.INTEGER
-      },
       UserId: {
         type: Sequelize.INTEGER,
         references: {

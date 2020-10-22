@@ -28,7 +28,16 @@
           <input type="text" name="released_year" id="" placeholder="e.g 2012" value="<%= el.released_year %>">
         </tr>
         <tr>
+          <label>Book's Price</label>
+          <input type="text" name="price" id="" value="<%= el.price %>">
+        </tr>
+        <tr>
+          <label>Book's Stock</label>
+          <input type="number" name="stock" id="" value="<%= el.stock %>">
+        </tr>
+        <tr>
           <input type="submit" value="Save Book">
+          <button><a href="/book"></a></button>
         </tr>
       </table>
     </form>

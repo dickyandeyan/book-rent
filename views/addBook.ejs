@@ -1,3 +1,4 @@
+
 <%- include('./partials/header', {title: 'Books Home'}) %>
 
 
@@ -18,30 +19,19 @@
       <label for="exampleInputEmail1">Released Year</label>
       <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="released_year">
     </div>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Price</label>
+      <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="price">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Price</label>
+      <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="stock">
+    </div>
+    
     <button type="submit" class="btn btn-primary">Add Book</button>
 
   </form>
 </div>
-
-<!-- <form action="" method="post">
-  <table>
-    <tr>
-      <label>Book's Title</label>
-      <input type="text" name="title" id="" placeholder="e.g Dangdut Milenium">
-    </tr>
-    <tr>
-      <label>Book's Author</label>
-      <input type="text" name="author" id="" placeholder="e.g Maemunah Jamrun">
-    </tr>
-    <tr>
-      <label>Book's Released Year</label>
-      <input type="text" name="released_year" id="" placeholder="e.g 2012">
-    </tr>
-    <tr>
-      <input type="submit" value="Add Book">
-    </tr>
-  </table>
-</form> -->
 
 
 <%- include('./partials/footer') %>

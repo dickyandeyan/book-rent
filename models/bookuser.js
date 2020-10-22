@@ -16,7 +16,6 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   BookUser.init({
-    rent_date: DataTypes.INTEGER,
     UserId: DataTypes.INTEGER,
     BookId: DataTypes.INTEGER
   }, {

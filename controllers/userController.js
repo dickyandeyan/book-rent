@@ -18,13 +18,12 @@ class UserController {
       email: req.body.email,
       password: req.body.password
     }
-    console.log(newUser);
     User.create(newUser)
       .then(user => {
         res.redirect('/login')
       })
       .catch(err => {
-        res.send(err.message)
+        res.send(err)
       })
   }
 
@@ -42,8 +41,10 @@ class UserController {
     const password = req.body.password
 
     User.findOne({
-      where: { email: emails }
-    })
+        where: {
+          email: emails
+        }
+      })
       .then(user => {
         if (user) {
           const isValidPassword = bcrypt.compareSync(password, user.password)
@@ -60,7 +61,7 @@ class UserController {
         }
       })
       .catch(err => {
-        res.send(err);
+        res.send(err.message);
       })
   }
 }

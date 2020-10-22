@@ -1,36 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
+<%- include('./partials/header', {title: 'Books Home'}) %>
 
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-  </head>
 
-  <div>
-    <h1>Add Book</h1>
-  </div>
+<%- include('./partials/navbar') %>
 
-  <body>
-    <form action="" method="post">
-      <table>
-        <tr>
-          <label>Book's Title</label>
-          <input type="text" name="title" id="" placeholder="e.g Dangdut Milenium">
-        </tr>
-        <tr>
-          <label>Book's Author</label>
-          <input type="text" name="author" id="" placeholder="e.g Maemunah Jamrun">
-        </tr>
-        <tr>
-          <label>Book's Released Year</label>
-          <input type="text" name="released_year" id="" placeholder="e.g 2012">
-        </tr>
-        <tr>
-          <input type="submit" value="Add Book">
-        </tr>
-      </table>
-    </form>
-  </body>
 
-</html>
+<div class="container">
+  <form action="/book/add" method="POST">
+    <div class="form-group">
+      <label for="first_name">Books Title</label>
+      <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="title">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Authors</label>
+      <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="author">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Released Year</label>
+      <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="released_year">
+    </div>
+    <button type="submit" class="btn btn-primary">Add Book</button>
+
+  </form>
+</div>
+
+<!-- <form action="" method="post">
+  <table>
+    <tr>
+      <label>Book's Title</label>
+      <input type="text" name="title" id="" placeholder="e.g Dangdut Milenium">
+    </tr>
+    <tr>
+      <label>Book's Author</label>
+      <input type="text" name="author" id="" placeholder="e.g Maemunah Jamrun">
+    </tr>
+    <tr>
+      <label>Book's Released Year</label>
+      <input type="text" name="released_year" id="" placeholder="e.g 2012">
+    </tr>
+    <tr>
+      <input type="submit" value="Add Book">
+    </tr>
+  </table>
+</form> -->
+
+
+<%- include('./partials/footer') %>

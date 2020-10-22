@@ -2,6 +2,10 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
+    const data = [
+      { title: 'asdasd', author: 'asodiwqd qwidnqowd', released_year: 1203, createdAt: new Date(), updatedAt: new Date() }
+    ]
+    return queryInterface.bulkInsert('Books', data)
     /**
      * Add seed commands here.
      *
@@ -14,6 +18,7 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
+    return queryInterface.bulkDelete('Books', null)
     /**
      * Add commands to revert seed here.
      *

@@ -4,11 +4,15 @@ class BookController {
   static showBook(req, res) {
     Book.findAll()
       .then(data => {
-        res.send(data)
+        res.render('book', { data })
       })
       .catch(err => {
         res.send(err)
       })
+  }
+
+  static addBookForm(req, res) {
+    res.render('addBook')
   }
 
   static addBook(req, res) {
@@ -19,7 +23,18 @@ class BookController {
     }
     Book.create(dataAddBook)
       .then(data => {
-        res.redirect('/')
+        res.redirect('/book')
+      })
+      .catch(err => {
+        res.send(err)
+      })
+  }
+
+  static editBookForm(req, res) {
+    const id = +req.params.id
+    Book.findAll({ where: { id } })
+      .then(data => {
+        res.render(`editBook`, { data })
       })
       .catch(err => {
         res.send(err)
@@ -35,7 +50,7 @@ class BookController {
     }
     Book.update(dataUpdateBook, { where: { id } })
       .then(data => {
-        res.redirect('/')
+        res.redirect('/book')
       })
       .catch(err => {
         res.send(err)
@@ -46,7 +61,7 @@ class BookController {
     const id = +req.params.id
     Book.destroy({ where: { id } })
       .then(data => {
-        res.redirect('/')
+        res.redirect('/book')
       })
       .catch(err => {
         res.send(err)

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  </head>
+  <div>
+    <h1>Book List</h1>
+    <ul>
+      <li><a href="/book">Book</a></li>
+      <li><a href="/book/add">Add Book</a></li>
+    </ul>
+  </div>
+
+  <body>
+    <table>
+      <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Released Year</th>
+        <th>Action</th>
+      </tr>
+      <% data.forEach(el => { %>
+      <tr>
+        <td><%= el.title %></td>
+        <td><%= el.author %></td>
+        <td><%= el.released_year %></td>
+        <td><a href="/book/edit/<%= el.id %>">Edit</a> || <a href="/book/delete/<%= el.id %>">Delete</a></td>
+      </tr>
+      <% }) %>
+    </table>
+  </body>
+
+</html>

@@ -8,7 +8,7 @@ class BookController {
   static showBook(req, res) {
     Book.findAll()
       .then(data => {
-        console.log(data);
+        // console.log(data);
         res.render('book', {
           data
         })

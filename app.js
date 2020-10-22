@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const router = require('./routes/index');
 const session = require('express-session');
-const port = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({
@@ -21,6 +21,6 @@ app.use(session({
 
 app.use('/', router);
 app.use
-app.listen(port, () => {
-  console.log(`Connected to http://localhost:${port}`);
+app.listen(PORT, () => {
+  console.log(`Connected to http://localhost:${PORT}`);
 })

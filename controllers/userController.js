@@ -18,13 +18,12 @@ class UserController {
       email: req.body.email,
       password: req.body.password
     }
-    console.log(newUser);
     User.create(newUser)
       .then(user => {
         res.redirect('/login')
       })
       .catch(err => {
-        res.send(err.message)
+        res.send(err)
       })
   }
 

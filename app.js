@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const router = require('./routes/index');
 const session = require('express-session');
+const { default: Swal } = require('sweetalert2');
 const port = 3000;
 
 app.set('view engine', 'ejs');

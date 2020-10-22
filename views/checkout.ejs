@@ -11,15 +11,13 @@
     <table>
       <tr>
         <th>Title</th>
-        <th>Author</th>
         <th>Released Year</th>
         <th>Price</th>
         <th>Stock</th>
       </tr>
       <% data.forEach(el => { %>
       <tr>
-        <td><%= el.title %></td>
-        <td><%= el.author %></td>
+        <td><%= el.createdBy() %></td>
         <td><%= el.released_year %></td>
         <td><%= el.price %></td>
         <td><%= el.stock %></td>

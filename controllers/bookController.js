@@ -3,8 +3,6 @@ const {
   BookUser
 } = require('../models')
 
-const helper = require('../helpers/helper')
-
 class BookController {
   static showBook(req, res) {
     Book.findAll()
@@ -124,12 +122,12 @@ class BookController {
     const id = +req.session.userId
     BookUser.findAll({ where: { UserId: id } })
       .then(data => {
-        for (let i = 0; i < data.length; i++) {
-          Book.findAll({ where: { id: data[i].BookId } })
-            .then(res => {
-              console.log(res[0].dataValues) // hasil
+        data.forEach(el => {
+          Book.findAll({ where: { id: el.BookId } })
+            .then(data => {
+              console.log(data[0].dataValues) // hasil
             })
-        }
+        })
         res.redirect('/book')
       })
       .catch(err => {

@@ -17,15 +17,52 @@ module.exports = (sequelize, DataTypes) => {
       // User.belongsTo(models.BookUser, {
       //   foreignKey: 'UserId'
       // })
-      User.hasMany(models.BookUser, { foreignKey: 'UserId' })
+      User.hasMany(models.BookUser, {
+        foreignKey: 'UserId'
+      })
     }
   };
   User.init({
-    first_name: DataTypes.STRING,
-    last_name: DataTypes.STRING,
-    address: DataTypes.STRING,
-    email: DataTypes.STRING,
-    password: DataTypes.STRING
+    first_name: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: {
+          msg: `First name is required`
+        }
+      }
+    },
+    last_name: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: {
+          msg: `Last name is required`
+        }
+      }
+    },
+    address: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: {
+          msg: `Address is required`
+        }
+      }
+    },
+    email: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: {
+          msg: `Email is required`
+        }
+      }
+    },
+    password: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: {
+          msg: `Password is required`
+        }
+      }
+    },
   }, {
     hooks: {
       beforeCreate(instance, options) {

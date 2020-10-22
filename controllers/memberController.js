@@ -26,7 +26,12 @@ class MemberController {
   }
 
   static loginForm(req, res) {
-    res.render('./login/loginForm')
+    const {
+      error
+    } = req.query
+    res.render('./login/loginForm', {
+      error
+    })
   }
 
   static postLogin(req, res) {
@@ -44,11 +49,16 @@ class MemberController {
         if (user) {
           const isValidPassword = bcrypt.compareSync(password, user.password)
           if (isValidPassword) {
+
+            req.session.userId = user.id
             return res.redirect('/')
           } else {
             const error = "Invalid password/username"
             return res.redirect(`/login?error=${error}`)
           }
+        } else {
+          const error = "Invalid password/username"
+          return res.redirect(`/login?error=${error}`)
         }
       })
       .catch(err => {

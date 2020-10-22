@@ -2,7 +2,7 @@ const {
   User
 } = require('../models')
 
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcryptjs')
 
 class UserController {
   static registerForm(req, res) {
@@ -38,14 +38,12 @@ class UserController {
   }
 
   static postLogin(req, res) {
-    const {
-      email,
-      password
-    } = req.body
+    const emails = req.body.email
+    const password = req.body.password
 
     User.findOne({
         where: {
-          email
+          email: emails
         }
       })
       .then(user => {

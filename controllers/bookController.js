@@ -1,12 +1,14 @@
 const {
   Book,
-  BookUser
+  BookUser,
+  User
 } = require('../models')
 
 class BookController {
   static showBook(req, res) {
     Book.findAll()
       .then(data => {
+        console.log(data);
         res.render('book', {
           data
         })

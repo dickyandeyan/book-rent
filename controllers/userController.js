@@ -19,11 +19,24 @@ class UserController {
       password: req.body.password
     }
     User.create(newUser)
-      .then(user => {
+      .then(() => {
         res.redirect('/login')
       })
       .catch(err => {
-        res.send(err)
+        if (err.name = "SequelizeValidationError") {
+          let errors = [];
+
+          err.errors.forEach(error => {
+            errors.push(error.message);
+          })
+
+          req.app.locals.message = errors.join(', ');
+          console.log(req.app.locals.message);
+          res.redirect(`/register?error=${errors}`);
+
+        } else {
+          res.send(err);
+        }
       })
   }
 
@@ -63,6 +76,12 @@ class UserController {
       .catch(err => {
         res.send(err.message);
       })
+  }
+
+  static getLogout(req, res) {
+    req.session.destroy(() => {
+      res.redirect('/login')
+    })
   }
 }
 

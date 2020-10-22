@@ -17,10 +17,10 @@ module.exports = {
       address: {
         type: Sequelize.STRING
       },
-      phone_number: {
-        type: Sequelize.INTEGER
-      },
       email: {
+        type: Sequelize.STRING
+      },
+      password: {
         type: Sequelize.STRING
       },
       createdAt: {

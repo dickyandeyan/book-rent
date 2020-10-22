@@ -11,14 +11,12 @@
   <table border="1">
     <tr>
       <th>Title</th>
-      <th>Author</th>
       <th>Released Year</th>
       <th>Action</th>
     </tr>
     <% data.forEach(el => { %>
     <tr>
-      <td><%= el.title %></td>
-      <td><%= el.author %></td>
+      <td><%= el.createdBy() %></td>
       <td><%= el.released_year %></td>
       <td><a href="/book/edit/<%= el.id %>">Edit</a> || <a href="/book/delete/<%= el.id %>">Delete</a></td>
     </tr>

@@ -3,6 +3,9 @@ const app = express();
 const router = require('./routes/index');
 const session = require('express-session');
 const PORT = process.env.PORT || 3000;
+const {
+  default: Swal
+} = require('sweetalert2');
 
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({

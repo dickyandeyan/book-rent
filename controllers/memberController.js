@@ -1,28 +1,27 @@
 const {
-  User
+  Member
 } = require('../models')
 
-class UserController {
+const bcrypt = require('bcryptjs')
+
+class MemberController {
   static registerForm(req, res) {
     res.render('./login/registerForm')
   }
 
   static postRegister(req, res) {
 
-    const newUser = {
-      first_name: req.body.first_name,
-      last_name: req.body.last_name,
-      address: req.body.address,
-      email: req.body.email,
+    const newMember = {
+      username: req.body.username,
       password: req.body.password
     }
-    console.log(newUser);
-    User.create(newUser)
+
+    Member.create(newMember)
       .then(user => {
         res.redirect('/login')
       })
       .catch(err => {
-        res.send(err.message)
+        res.send(err)
       })
   }
 
@@ -37,19 +36,20 @@ class UserController {
 
   static postLogin(req, res) {
     const {
-      email,
+      username,
       password
     } = req.body
 
-    User.findOne({
+    Member.findOne({
         where: {
-          email
+          username
         }
       })
       .then(user => {
         if (user) {
           const isValidPassword = bcrypt.compareSync(password, user.password)
           if (isValidPassword) {
+
             req.session.userId = user.id
             return res.redirect('/')
           } else {
@@ -62,9 +62,10 @@ class UserController {
         }
       })
       .catch(err => {
-        res.send(err);
+        res.send(err)
       })
   }
+
 }
 
-module.exports = UserController
+module.exports = MemberController;

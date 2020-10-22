@@ -1,10 +1,15 @@
-const { Book, BookUser } = require('../models')
+const {
+  Book,
+  BookUser
+} = require('../models')
 
 class BookController {
   static showBook(req, res) {
     Book.findAll()
       .then(data => {
-        res.render('book', { data })
+        res.render('book', {
+          data
+        })
       })
       .catch(err => {
         res.send(err)
@@ -32,9 +37,15 @@ class BookController {
 
   static editBookForm(req, res) {
     const id = +req.params.id
-    Book.findAll({ where: { id } })
+    Book.findAll({
+        where: {
+          id
+        }
+      })
       .then(data => {
-        res.render(`editBook`, { data })
+        res.render(`editBook`, {
+          data
+        })
       })
       .catch(err => {
         res.send(err)
@@ -48,7 +59,11 @@ class BookController {
       author: req.body.author,
       released_year: req.body.released_year
     }
-    Book.update(dataUpdateBook, { where: { id } })
+    Book.update(dataUpdateBook, {
+        where: {
+          id
+        }
+      })
       .then(data => {
         res.redirect('/book')
       })
@@ -59,7 +74,11 @@ class BookController {
 
   static deleteBook(req, res) {
     const id = +req.params.id
-    Book.destroy({ where: { id } })
+    Book.destroy({
+        where: {
+          id
+        }
+      })
       .then(data => {
         res.redirect('/book')
       })

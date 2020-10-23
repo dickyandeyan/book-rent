@@ -4,6 +4,10 @@ const {
   User
 } = require('../models')
 
+const {
+  createInvoice
+} = require('../helpers/createInvoice');
+
 class BookController {
   static showBook(req, res) {
     Book.findAll()
@@ -42,10 +46,10 @@ class BookController {
   static editBookForm(req, res) {
     const id = +req.params.id
     Book.findAll({
-      where: {
-        id
-      }
-    })
+        where: {
+          id
+        }
+      })
       .then(data => {
         res.render(`editBook`, {
           data
@@ -66,10 +70,10 @@ class BookController {
       price: +req.body.price
     }
     Book.update(dataUpdateBook, {
-      where: {
-        id
-      }
-    })
+        where: {
+          id
+        }
+      })
       .then(data => {
         res.redirect('/book')
       })
@@ -81,10 +85,11 @@ class BookController {
   static deleteBook(req, res) {
     const id = +req.params.id
     Book.destroy({
-      where: {
-        id, stock: 0
-      }
-    })
+        where: {
+          id,
+          stock: 0
+        }
+      })
       .then(data => {
         res.redirect('/book')
       })
@@ -96,7 +101,9 @@ class BookController {
   static checkout(req, res) {
     Book.findAll()
       .then(data => {
-        res.render('checkout', { data })
+        res.render('checkout', {
+          data
+        })
       })
       .catch(err => {
         res.send(err)
@@ -110,7 +117,11 @@ class BookController {
     }
     BookUser.create(dataCheckout)
       .then(data => {
-        return Book.decrement('stock', { where: { id: +req.params.id } })
+        return Book.decrement('stock', {
+          where: {
+            id: +req.params.id
+          }
+        })
       })
       .then(data => {
         res.redirect('/book/checkout')
@@ -122,12 +133,21 @@ class BookController {
 
   static buy(req, res) {
     const id = +req.session.userId
-    BookUser.findAll({ where: { UserId: id } })
+    BookUser.findAll({
+        where: {
+          UserId: id
+        }
+      })
       .then(data => {
         data.forEach(el => {
-          Book.findAll({ where: { id: el.BookId } })
+          Book.findAll({
+              where: {
+                id: el.BookId
+              }
+            })
             .then(data => {
-              console.log(data[0].dataValues) // hasil
+              let invoice = data[0].dataValues
+              return invoice
             })
         })
         res.redirect('/book')

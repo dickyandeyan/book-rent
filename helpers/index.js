@@ -4,11 +4,11 @@ const {
 
 const invoice = {
   shipping: {
-    name: "John Doe",
+    name: "Rizki Yoditia",
     address: "1234 Main Street",
-    city: "San Francisco",
-    state: "CA",
-    country: "US",
+    city: "Bekasi",
+    state: "Java",
+    country: "ID",
     postal_code: 94111
   },
   items: [{

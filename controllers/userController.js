@@ -1,5 +1,7 @@
 const {
-  User
+  User,
+  Book,
+  BookUser
 } = require('../models')
 
 const bcrypt = require('bcryptjs')

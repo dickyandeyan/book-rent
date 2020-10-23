@@ -1,38 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
+<%- include('./partials/header', {title: 'Books Home'}) %>
 
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-  </head>
+<%- include('./partials/navbar') %>
 
-  <div>
-    <h1>Add Book</h1>
-  </div>
+<% data.forEach(el => { %>
 
-  <body>
-    <% data.forEach(el => { %>
-    <form action="/book/edit/<%= el.id %>" method="post">
-      <table>
-        <tr>
-          <label>Book's Title</label>
-          <input type="text" name="title" id="" placeholder="e.g Dangdut Milenium" value="<%= el.title %>">
-        </tr>
-        <tr>
-          <label>Book's Author</label>
-          <input type="text" name="author" id="" placeholder="e.g Maemunah Jamrun" value="<%= el.author %>">
-        </tr>
-        <tr>
-          <label>Book's Released Year</label>
-          <input type="text" name="released_year" id="" placeholder="e.g 2012" value="<%= el.released_year %>">
-        </tr>
-        <tr>
-          <input type="submit" value="Save Book">
-        </tr>
-      </table>
-    </form>
-    <% }) %>
-  </body>
+<div class="container">
+  <form action="/book/edit/<%= el.id %>" method="post">
+    <label>Book's Title</label>
+    <input type="text" name="title" id="" placeholder="e.g Dangdut Milenium" value="<%= el.title %>">
+    <br><br>
+    <label>Book's Author</label>
+    <input type="text" name="author" id="" placeholder="e.g Maemunah Jamrun" value="<%= el.author %>">
+    <br><br>
+    <label>Book's Released Year</label>
+    <input type="text" name="released_year" id="" placeholder="e.g 2012" value="<%= el.released_year %>">
+    <br><br>
+    <label>Book's Price</label>
+    <input type="text" name="price" id="" value="<%= el.price %>">
+    <br><br>
+    <label>Book's Stock</label>
+    <input type="number" name="stock" id="" value="<%= el.stock %>">
+    <br><br>
+    <input type="submit" value="Save Book">
+    <a href="/book"></a></button>
+</div>
 
-</html>
+</form>
+<% }) %>
+
+
+<%- include('./partials/footer') %>
